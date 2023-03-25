@@ -1,0 +1,12 @@
+class Solution:
+    def average(self, salary: List[int]) -> float:
+        salary.sort()
+        maxi = salary[0]
+        mini = salary[-1]
+        Sum = 0
+        for i in range(len(salary)):
+            if salary[i] != maxi and salary[i] != mini:
+                Sum += salary[i]
+
+        return (Sum/(len(salary)-2))
+
