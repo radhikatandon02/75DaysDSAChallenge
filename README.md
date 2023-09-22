@@ -1,4 +1,4 @@
-This repository contains Solutions to some interesting problems from Placement point of view.
+This Repository contains Solutions to some Interesting Problems from Placement Point of View.
 ---------------------------------------------------------------------------------------------
 Language : C++ <br/>
 Platforms : Coding Ninjas, Leetcode, Geeks_for_Geeks <br/>
