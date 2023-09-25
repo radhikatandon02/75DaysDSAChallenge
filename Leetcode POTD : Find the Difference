@@ -1,0 +1,9 @@
+lass Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        sSum = 0
+        tSum = 0
+        for i in s:
+            sSum += ord(i)
+        for j in t:
+            tSum += ord(j)
+        return chr(tSum-sSum)
