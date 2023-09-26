@@ -1,0 +1,16 @@
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        dict = {}
+        stack = []
+        visited = set()
+        '''last occurence of each character in string'''
+        for i in range(len(s)):
+            dict[s[i]] = i
+        '''checking presense of character in stack in lexicographical order'''
+        for i in range(len(s)):
+            if s[i] not in visited:
+                while(stack and stack[-1] > s[i] and dict[stack[-1]] > i):
+                    visited.remove(stack.pop())
+                stack.append(s[i])
+                visited.add(s[i])
+        return "".join(stack)
