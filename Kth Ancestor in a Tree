@@ -1,4 +1,4 @@
-Node* solve(Node *root, int k, int node)
+Node* solve(Node *root, int &k, int node)
 {
     if(root == NULL)
         return NULL;
