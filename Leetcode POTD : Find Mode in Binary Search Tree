@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void dfs(TreeNode* root, unordered_map<int,int> &counter)
+    {
+        if(root == NULL)
+        {
+            return;
+        }
+        counter[root->val]++;
+        dfs(root->left, counter);
+        dfs(root->right,counter);
+
+    }
+    vector<int> findMode(TreeNode* root) {
+        unordered_map<int,int> counter;
+        dfs(root,counter);
+        int maxFreq = 0;
+
+        for(auto &[key,value]: counter){
+            maxFreq = max(maxFreq,value);
+        }
+
+        vector<int> ans;
+        for(auto &[key,value]: counter)
+        {
+            if(value == maxFreq){
+                ans.push_back(key);
+            }
+        }
+        return ans;
+    }
+};
