@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int count = 0;
+    pair<int,int> post_dfs(TreeNode* root)
+    {
+        if(root == NULL)
+            return {0,0};
+
+        pair<int,int> left = post_dfs(root->left);
+        pair<int,int> right = post_dfs(root->right);
+        
+        int nodeSum = left.first + right.first + root->val;
+        int nodeCount = left.second + right.second + 1;
+        
+        if(root->val == nodeSum/nodeCount){
+            count++;
+        }
+
+        return {nodeSum, nodeCount};
+        
+        
+    }
+    int averageOfSubtree(TreeNode* root) {
+        post_dfs(root);
+        return count;
+    }
+};
