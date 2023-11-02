@@ -1,0 +1,26 @@
+class Solution{
+  public:
+    int minDist(int a[], int n, int x, int y) {
+        // code here
+        int iX = -1,iY = -1;
+        int dist = INT_MAX;
+        
+        for(int i=0;i<n;i++)
+        {
+            if(a[i] == x)
+                iX = i;
+            else if(a[i] == y)
+                iY = i;
+            if(iX != -1 && iY != -1)
+            {
+                dist = min(dist,abs(iY-iX));
+            }
+        }
+        if(dist == INT_MAX){
+            return -1;
+        }
+        else{
+            return dist;
+        }
+    }
+};
