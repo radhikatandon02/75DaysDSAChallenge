@@ -100,6 +100,78 @@ Node *insertIntoBST(Node *root, int data){
     return root;
 }
 
+int minBST(Node *root)
+{
+    Node *temp = root;
+    while(temp->left != NULL){
+        temp = temp->left;
+    }
+    return temp->data;
+}
+
+int maxBST(Node *root)
+{
+    Node *temp = root;
+    while(temp->right != NULL){
+        temp = temp->right;
+    }
+    return temp->data;
+}
+
+Node *deletionInBST(Node *root, int x)
+{
+    //base case
+    if(root == NULL)
+    {
+        return root;
+    }
+    
+    if(root->data == x)
+    {
+        //0 child 
+        if(root->left == NULL && root->right == NULL)
+        {
+            delete root;
+            return NULL;
+        }
+        //1 child 
+        //left child 
+        if(root->left != NULL && root->right == NULL)
+        {
+            Node *temp = root->left;
+            delete root;
+            return temp;
+        }
+        
+        //right child
+        if(root->left == NULL && root->right != NULL)
+        {
+            Node *temp = root->right;
+            delete root;
+            return temp;
+        }
+        
+        //2 child
+        if(root->left != NULL && root->right != NULL)
+        {
+            int min = minBST(root->right);
+            root->data = min;
+            root->right = deletionInBST(root->right, min);
+            return root;
+            
+        }
+    }
+    else if(root->data > x)
+    {
+        root->left = deletionInBST(root->left, x);
+        return root;
+    }
+    else{
+        root->right = deletionInBST(root->right, x);
+        return root;
+    }
+}
+
 void takeInput(Node *&root){
     int data;
     cin >> data;
@@ -129,5 +201,15 @@ int main()
     
     cout << endl << "Printing Postorder: " << endl;
     postOrder(root);
-    return 0;
+    
+    cout << endl << "Min value in BST: " << minBST(root) <<endl;
+    cout << endl << "Max value in BST: " << maxBST(root) <<endl;
+
+    cout << "Enter a node to Delete: " ;
+    int nodeToDelete;
+    cin >> nodeToDelete;
+    root = deletionInBST(root,nodeToDelete);
+    
+    cout << "Printing the BST after deletion: " << endl;
+    levelOrderTraversal(root);
 }
