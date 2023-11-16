@@ -1,0 +1,26 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    int n,m;
+    cin >> n >> m;
+    int divByN = 0, notDivByN = 0;
+    for(int i=1;i<=m;i++)
+    {
+        if(i%n == 0)
+        {
+            divByN += i;
+        }
+        else
+        {
+            notDivByN += i;
+        }
+    }
+    
+    cout << notDivByN-divByN;
+}
