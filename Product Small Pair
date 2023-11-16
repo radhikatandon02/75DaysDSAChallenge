@@ -1,0 +1,34 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+
+int ProductSmallestPair(int sum, int arr[], int n)
+{
+    if(n < 2 || n == 0)
+    {
+        return -1;
+    }
+    sort(arr, arr+n);
+    int prod = 0;
+    if(arr[0]+arr[1] <= sum)
+    {
+        prod = arr[0]*arr[1];
+    }
+    return prod;
+}
+
+int main() {
+    int sum, n;
+    cin >> sum >> n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin >> arr[i];
+    }
+    int ans = ProductSmallestPair(sum,arr,n);
+    cout << ans;
+}
