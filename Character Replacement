@@ -1,0 +1,40 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+string charReplac(string str, int n, char ch1, char ch2)
+{
+    if(str == "")
+    {
+        return "";
+    }
+    else if((!str.find(ch1) && !str.find(ch2)) || ch1 == ch2)
+    {
+        return str;
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        if(str[i] == ch1){
+            str[i] = ch2;
+        }
+        else if(str[i] == ch2)
+        {
+            str[i] = ch1;
+        }
+    }
+    return str;
+}
+
+int main() {
+    string str;
+    cin >> str;
+    int n = str.length();
+    char ch1,ch2;
+    cin >> ch1;
+    cin >> ch2;
+    cout << charReplac(str,n,ch1,ch2);
+}
