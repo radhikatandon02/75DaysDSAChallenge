@@ -1,0 +1,33 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+string moveHyphen(string str)
+{
+    int n = str.length();
+    string strAlpha = "", strHyphen="";
+    if(str == "")
+    {
+        return "";
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(str[i] == '-')
+        {
+            strHyphen = strHyphen + str[i];
+        }
+        else{
+            strAlpha = strAlpha + str[i];
+        }
+    }
+    return strHyphen+strAlpha;
+}
+
+int main() {
+    string str;
+    cin >> str;
+    string ans = moveHyphen(str);
+    cout << ans;
+}
