@@ -1,0 +1,72 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int numberOfCarries(int n1,int n2)
+{
+    int count=0,carry=0,i=0,j=0;
+    vector<int> v1,v2;
+    while(n1>0)
+    {
+        v1.push_back(n1%10);
+        n1 /= 10;
+    }
+    while(n2>0)
+    {
+        v2.push_back(n2%10);
+        n2 /= 10;
+    }
+    while(i < v1.size() && j < v2.size())
+    {
+        if(v1[i]+v2[j]+carry >= 10)
+        {
+            carry=1;
+            count++;
+        }
+        else
+        {
+            carry=0;
+        }
+        i++;
+        j++;
+    }
+    
+    while(i<v1.size())
+    {
+        if(v1[i]+carry >= 10)
+        {
+            carry=1;
+            count++;
+        }
+        else
+        {
+            carry=0;
+        }
+        i++;
+    }
+    
+    while(j<v2.size())
+    {
+        if(v2[j]+carry >= 10)
+        {
+            carry=1;
+            count++;
+        }
+        else
+        {
+            carry=0;
+        }
+        j++;
+    }
+    
+    return count;
+}
+
+int main() {
+    int num1,num2;
+    cin >> num1;
+    cin >> num2;
+    cout << numberOfCarries(num1,num2);
+}
