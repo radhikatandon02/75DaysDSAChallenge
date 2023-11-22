@@ -1,0 +1,34 @@
+class Solution{
+    public:
+    // return true/false denoting whether the tree is Symmetric or not
+    bool solve(struct Node* root1, struct Node* root2)
+    {
+        if(root1 == NULL && root2 == NULL)
+            return true;
+        if(root1 == NULL && root2 != NULL)
+            return false;
+        if(root1 != NULL && root2 == NULL)
+            return false;
+        
+        bool left = solve(root1->left,root2->right);
+        bool right = solve(root1->right, root2->left);
+        
+        if(root1->data == root2->data && left && right)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool isSymmetric(struct Node* root)
+    {
+	    if(root == NULL)
+	    {
+	        return true;
+	    }
+	    
+	    return solve(root,root);
+    }
+};
