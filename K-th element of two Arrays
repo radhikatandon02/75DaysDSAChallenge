@@ -1,0 +1,26 @@
+int kthElement(int arr1[], int arr2[], int n, int m, int k)
+    {
+        int arr[n+m],i=0,j=0,l=0;
+        while(i<n && j<m)
+        {
+            if(arr1[i] <= arr2[j])
+            {
+                arr[l++] = arr1[i++];
+            }
+            else
+            {
+                arr[l++] = arr2[j++];
+            }
+        }
+        
+        while(i<n)
+        {
+            arr[l++] = arr1[i++];
+        }
+        while(j<m)
+        {
+            arr[l++] = arr2[j++];
+        }
+        
+        return arr[k-1];
+    }
