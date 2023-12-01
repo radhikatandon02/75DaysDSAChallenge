@@ -1,0 +1,59 @@
+--------------------------------------------------------------------
+C++ Implementation
+--------------------------------------------------------------------
+
+vector<int> missingNumbers(vector<int> arr, vector<int> brr) {
+    vector<int> ans;
+    unordered_map<int,int> mpA(0), mpB(0);
+    for(int i=0;i<arr.size();i++)
+    {
+        mpA[arr[i]]++;
+    }
+    for(int i=0;i<brr.size();i++)
+    {
+        mpB[brr[i]]++;
+    }
+    
+    for(auto x: mpB)
+    {
+        if(mpA.find(x.first) == mpA.end())
+        {
+            ans.push_back(x.first);
+        }
+        else if(mpA.find(x.first)!= mpA.end() && mpB[x.first]>mpA[x.first])
+        {
+            ans.push_back(x.first);
+        }
+    }
+    sort(ans.begin(),ans.end());
+    return ans;
+}
+
+------------------------------------------------------------------------------------
+Python Implementation
+------------------------------------------------------------------------------------
+
+def missingNumbers(arr, brr):
+    # Write your code here
+    l_arr = {}
+    l_brr = {}
+    
+    for i in arr:
+        if i not in l_arr:
+            l_arr[i] = 1
+        else:
+            l_arr[i] += 1
+            
+    for i in brr:
+        if i not in l_brr:
+            l_brr[i] = 1
+        else:
+            l_brr[i] += 1
+            
+    l=[]      
+    for i in l_brr:
+        if i not in l_arr:
+            l.append(i)
+        elif i in l_arr and l_brr[i]>l_arr[i]:
+            l.append(i)
+    return (sorted(l))
