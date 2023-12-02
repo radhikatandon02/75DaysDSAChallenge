@@ -1,0 +1,14 @@
+class Solution{
+    public:
+    int isRepresentingBST(int arr[], int N)
+    {
+        if(is_sorted(arr,arr+N))
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+};
