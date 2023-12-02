@@ -1,0 +1,20 @@
+int pairs(int k, vector<int> arr) {
+    sort(arr.begin(), arr.end());
+    int count = 0;
+    for(int i=arr.size()-1;i>0;i--)
+    {
+        for(int j=i-1; j>=0; j--)
+        {
+            if(arr[i]-arr[j] == k)
+            {
+                count++;
+            }
+            else if(arr[i]-arr[j] > k)
+            {
+                break;
+            }
+            
+        }
+    }
+    return count;
+}
