@@ -1,0 +1,48 @@
+class Solution
+{
+public:
+    void inOrder(Node *root, vector<int> &ans)
+    {
+        if(root == NULL)
+        {
+            return;
+        }
+        
+        inOrder(root->left, ans);
+        ans.push_back(root->data);
+        inOrder(root->right, ans);
+    }
+    int countPairs(Node* root1, Node* root2, int x)
+    {
+        if(root1 == NULL || root2 == NULL)
+        {
+            return 0;
+        }
+        
+        vector<int> val1, val2;
+        inOrder(root1, val1);
+        inOrder(root2, val2);
+        
+        int i=0, j = val2.size()-1;
+        int count=0;
+        while(i < val1.size() && j >= 0)
+        {
+            int sum = val1[i]+val2[j];
+            if(sum == x)
+            {
+                count++;
+                i++;
+                j--;
+            }
+            else if(sum < x)
+            {
+                i++;
+            }
+            else
+            {
+                j--;
+            }
+        }
+        return count;
+    }
+};
