@@ -1,0 +1,24 @@
+string gridChallenge(vector<string> grid) {
+    int len = grid.size();
+    if(len == 1)
+    {
+        return "YES";
+    }
+    //sorting rows
+    for(int i=0; i<len; i++)
+    {
+        sort(grid[i].begin(), grid[i].end());
+    }
+    //check for columns
+    for(int i=0; i<len; i++)
+    {
+        for(int j=0; j<len-1; j++)
+        {
+            if(grid[j][i]>grid[j+1][i])
+            {
+                return "NO";
+            }
+        }
+    }
+    return "YES";
+}
