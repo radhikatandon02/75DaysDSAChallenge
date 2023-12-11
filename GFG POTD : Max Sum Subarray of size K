@@ -1,0 +1,17 @@
+class Solution{
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int N){
+        long subSum = 0, temp = 0;
+        for(int i=0; i<K; i++)
+        {
+            temp += Arr[i];
+        }
+        subSum = temp;
+        for(int i=K; i<N; i++)
+        {
+            subSum += Arr[i]-Arr[i-K];
+            temp = max(temp,subSum);
+        }
+        return temp;
+    }
+};
