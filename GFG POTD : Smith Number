@@ -1,0 +1,56 @@
+class Solution {
+  public:
+    bool isPrime(int n)
+    {
+        if(n == 1)
+        {
+            return false;
+        }
+        
+        for(int i=2; i<= sqrt(n); i++)
+        {
+            if(n%i == 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    int sumOfPrimeFactors(int n)
+    {
+        int sum = 0, f = 1;
+        while(n > 1)
+        {
+            ++f;
+            if(!isPrime(f))
+                continue;
+            
+            while(n%f == 0)
+            {
+                sum += sumOfDigits(f);
+                n = n/f;
+            }
+        }
+        
+        return sum;
+    }
+    
+    int sumOfDigits(int n)
+    {
+        int temp = n, d, sum = 0;
+        while(temp != 0)
+        {
+            d = temp%10;
+            sum += d;
+            temp = temp/10;
+        }
+        return sum;
+    }
+    
+    int smithNum(int n) {
+        if(isPrime(n))
+        {
+            return 0;
+        }
+        return sumOfDigits(n) == sumOfPrimeFactors(n);
+    }
