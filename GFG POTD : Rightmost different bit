@@ -1,0 +1,24 @@
+public:
+    //Function to find the first position with different bits.
+    int posOfRightMostDiffBit(int m, int n)
+    {
+        if(m == n)
+        {
+            return -1;
+        }
+        string binM = bitset<64> (m).to_string();
+        string binN = bitset<64> (n).to_string();
+        
+        int flag = 0;
+        for(int i = binM.length()-1; i>=0; i--)
+        {
+            if(binM[i] != binN[i])
+            {
+                flag = i;
+                break;
+            }
+        }
+        flag = binM.length() - flag;
+        return flag;
+    }
+};
