@@ -1,0 +1,11 @@
+string funnyString(string s) {
+    string r = string(s.rbegin(), s.rend());
+    for(int i=1; i<s.length(); i++)
+    {
+        if(abs(s[i]-s[i-1]) != abs(r[i]-r[i-1]))
+        {
+            return "Not Funny";
+        }
+    }
+    return "Funny";
+}
