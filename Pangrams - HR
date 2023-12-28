@@ -1,0 +1,19 @@
+string pangrams(string s) {
+    unordered_map<char,int> mp;
+    for(int i=0; i< s.length(); i++)
+    {
+        if(s[i]!=' ')
+        {
+            mp[tolower(s[i])]++;
+        }
+    }
+    
+    for(char i='a'; i<='z'; i++)
+    {
+        if(mp[i] == 0)
+        {
+            return "not pangram";
+        }
+    }
+    return "pangram";
+}
