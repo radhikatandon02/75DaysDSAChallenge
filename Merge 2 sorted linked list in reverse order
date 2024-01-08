@@ -1,0 +1,99 @@
+struct Node
+{
+    int data;
+    Node* next;
+};
+
+*/
+class Solution
+{
+    public:
+    struct Node * reverse(Node *head)
+    {
+        struct Node *curr = head;
+        struct Node *prev = NULL;
+        struct Node *next = NULL;
+        
+        while(curr)
+        {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        
+        return prev;
+    }
+    
+    struct Node * solve(Node *node1, Node *node2)
+    {
+        struct Node *temp = NULL;
+        struct Node *head = NULL;
+        while(node1 && node2)
+        {
+            while(node1 && node2 && node1->data <= node2->data)
+            {
+                if(temp)
+                {
+                    temp->next = node1;
+                    temp= temp->next;
+                }
+                else
+                {
+                    temp = node1;
+                    head = temp;
+                }
+                node1 = node1->next;
+            }
+            while(node1 && node2 && node2->data <= node1->data)
+            {
+                if(temp)
+                {
+                    temp->next = node2;
+                    temp= temp->next;
+                }
+                else
+                {
+                    temp = node2;
+                    head = temp;
+                }
+                node2 = node2->next;
+            }
+        }
+        while(node1)
+        {
+            temp->next = node1;
+            temp = temp->next;
+            node1 = node1->next;
+        }
+        while(node2)
+        {
+            temp->next = node2;
+            temp = temp->next;
+            node2 = node2->next;
+        }
+        
+        return reverse(head);
+    }
+    
+    struct Node * mergeResult(Node *node1,Node *node2)
+    {
+        if(node1 == NULL)
+        {
+            return reverse(node2);
+        }
+        if(node2 == NULL)
+        {
+            return reverse(node1);
+        }
+        
+        if(node1->data <= node2->data)
+        {
+            return solve(node1,node2);
+        }
+        else
+        {
+            return solve(node2,node1);
+        }
+    }  
+};
