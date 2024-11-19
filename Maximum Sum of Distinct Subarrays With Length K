@@ -1,0 +1,31 @@
+class Solution {
+public:
+    //Sliding Window Problem 
+    long long maximumSubarraySum(vector<int>& nums, int k) {
+        long long ans = 0;
+        long long currSum = 0;
+        int begin = 0, end = 0;
+        unordered_map<int, int> numToIndex;
+
+        while(end < nums.size()){
+            int currNum = nums[end];
+            int lastOcc = numToIndex.count(currNum) ? numToIndex[currNum] : -1;
+
+            //minimizing the window for non-distinct elements
+            while(begin <= lastOcc || end - begin + 1 > k){
+                currSum -= nums[begin];
+                begin++;
+            }
+            //mapping nums to indexes
+            numToIndex[currNum] = end;
+            currSum += nums[end];
+
+            //check for length to be = k
+            if(end - begin + 1 == k){
+                ans = max(ans, currSum);
+            }
+            end++;
+        }
+        return ans;
+    }
+};
